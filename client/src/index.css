@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 224 71% 4%;
+  --foreground: 213 31% 91%;
+  
+  --card: 224 71% 4%;
+  --card-foreground: 213 31% 91%;
+  
+  --popover: 224 71% 4%;
+  --popover-foreground: 213 31% 91%;
+  
+  --primary: 142 70% 50%;
+  --primary-foreground: 144 65% 5%;
+  
+  --secondary: 215 27.9% 16.9%;
+  --secondary-foreground: 210 40% 98%;
+  
+  --muted: 215 27.9% 16.9%;
+  --muted-foreground: 215 20.2% 65.1%;
+  
+  --accent: 215 27.9% 16.9%;
+  --accent-foreground: 210 40% 98%;
+  
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 215 27.9% 16.9%;
+  --input: 215 27.9% 16.9%;
+  --ring: 142 70% 50%;
+  
+  --radius: 0.5rem;
+  
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
+    font-family: var(--font-sans);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight;
+  }
+}
+
+@layer utilities {
+  .text-mono {
+    font-family: var(--font-mono);
+  }
+  
+  .glass-panel {
+    @apply bg-card/80 backdrop-blur-md border border-white/5 shadow-xl;
+  }
+  
+  .neon-border {
+    @apply border border-primary/50 shadow-[0_0_10px_rgba(34,197,94,0.2)];
+  }
+  
+  .neon-text {
+    text-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+  }
+  
+  .scan-line {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: theme('colors.primary.DEFAULT');
+    opacity: 0.5;
+    box-shadow: 0 0 10px theme('colors.primary.DEFAULT');
+    animation: scan 2s linear infinite;
+  }
+}
+
+@keyframes scan {
+  0% { top: 0%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-secondary/30;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-secondary rounded-full hover:bg-secondary/80 transition-colors;
+}
